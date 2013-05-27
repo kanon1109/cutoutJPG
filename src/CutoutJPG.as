@@ -38,7 +38,7 @@ public class CutoutJPG
 		if (copyDirection == CutoutJPG.LEFT || copyDirection == CutoutJPG.RIGHT)
 			width *= .5;
 		else if (copyDirection == CutoutJPG.UP || copyDirection == CutoutJPG.DOWN)
-			height *= .5;
+			heigth *= .5;
 		
 		//创建一个jpgBitmapData宽度一半的位图数据
 		var bitmapData:BitmapData = new BitmapData(width, height, true, 0xFFFFFF);
