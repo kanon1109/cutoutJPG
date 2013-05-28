@@ -1,4 +1,4 @@
-var folderURL = fl.browseForFolderURL("选择需要导出图片的文件目录")
+//var folderURL = fl.browseForFolderURL("选择需要导出图片的文件目录")
 var dom = fl.getDocumentDOM();
 var library = dom.library;
 function run()
@@ -9,10 +9,11 @@ function run()
 	var item;
 	var elements;
 	var url;
+	var name;
 	for(var i = 0; i < length; i+=1)
 	{
 		item = itemsList[i]
-		url = folderURL + "/" + itemsList[i].name + ".jpg";
+		//url = folderURL + "/" + itemsList[i].name + ".jpg";
 		dom.addItem({x:0, y:0}, item);
 		fl.trace(["length", dom.getTimeline().layers[0].frames[0].elements[0]]);
 		
@@ -21,6 +22,8 @@ function run()
 		
 		var width = dom.getTimeline().layers[0].frames[0].elements[0].width;
 		var height = dom.getTimeline().layers[0].frames[0].elements[0].height;
+		
+		fl.trace([width, height]);
 		
 		dom.getTimeline().layers[0].frames[0].elements[0].x += moveX;
 		dom.getTimeline().layers[0].frames[0].elements[0].y += moveY;
@@ -34,12 +37,19 @@ function run()
 		dom.getTimeline().layers[0].frames[0].elements[1].y += moveY;
 		
 		dom.getTimeline().layers[0].frames[0].elements[1].selected = true;
-		element = dom.convertToSymbol("movie clip", "mc_" + Math.floor(Math.random() * 9000) + 1000, "top left");
+		name = "mc_" + Math.floor(Math.random() * 9000) + 1000;
+		element = dom.convertToSymbol("movie clip", name, "top left");
 		
 		element.selected = true;
 		dom.setBlendMode("invert");
 		
-		dom.exportPNG(url,false,false);
+		return;
+		
+		/*library.deleteItem(name);
+		
+		dom.selectAll();
+		dom.deleteSelection();
+		dom.selectNone();*/
 	}
 }
 
